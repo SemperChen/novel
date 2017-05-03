@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!--
+    &lt;!&ndash; 表示JPA Repository所在的包 &ndash;&gt;
+    <jpa:repositories base-packacom.senperchan.novel.core.repositorytory"/>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="defaultPersistenceUnit"/>
+        <property name="packagesToScan" valcom.senperchan.novel.core.modelodel"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/novel?useSSL=false</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password">mysql123</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.connection.useUnicode">true</prop>
+                <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.connection.autoReconnect">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="connection.autoReconnectForPools">true</prop>
+                <prop key="connection.is-connection-validation-required">true</prop>
+
+                <prop key="hibernate.c3p0.validate">true</prop>
+                <prop key="hibernate.connection.provider_class">
+                    org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
+                </prop>
+                <prop key="hibernate.c3p0.min_size">5</prop>
+                <prop key="hibernate.c3p0.max_size">600</prop>
+                <prop key="hibernate.c3p0.timeout">1800</prop>
+                <prop key="hibernate.c3p0.max_statements">50</prop>
+                <prop key="hibernate.c3p0.preferredTestQuery">SELECT 1;</prop>
+                <prop key="hibernate.c3p0.testConnectionOnCheckout">true</prop>
+                <prop key="hibernate.c3p0.idle_test_period">3000</prop>
+            </props>
+        </property>
+    </bean>
+
+    &lt;!&ndash; 事务管理 &ndash;&gt;
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    &lt;!&ndash; 开启事务管理注解 &ndash;&gt;
+    <tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+            <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        </bean>
+
+        <tx:annotation-driven/>
+
+        <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+            <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
+            <!--<property name="packagesToScan" value="com.senperchan.novel.core.model"/>-->
+            <property name="packagesToScan">
+                <list>
+                    <value>com.senperchan.novel.core.model</value>
+                    <value>com.senperchan.novel.crawler.model</value>
+                </list>
+            </property>
+            <property name="jpaProperties">
+                <props>
+                    <prop key="hibernate.connection.provider_class">${hibernate.connection.provider_class}</prop>
+                    <prop key="hibernate.hikari.dataSourceClassName">${hibernate.hikari.dataSourceClassName}</prop>
+                    <prop key="hibernate.hikari.dataSource.url">${db.url}</prop>
+                    <prop key="hibernate.hikari.dataSource.user">${db.username}</prop>
+                    <prop key="hibernate.hikari.dataSource.password">${db.password}</prop>
+                    <prop key="hibernate.hikari.dataSource.cachePrepStmts">${dataSource.cachePrepStmts}</prop>
+                    <prop key="hibernate.hikari.dataSource.prepStmtCacheSize">${dataSource.prepStmtCacheSize}</prop>
+                    <prop key="hibernate.hikari.dataSource.prepStmtCacheSqlLimit">${dataSource.prepStmtCacheSqlLimit}</prop>
+
+                    <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                    <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                    <prop key="hibernate.ejb.naming_strategy">${hibernate.ejb.naming_strategy}</prop>
+                    <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                    <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                </props>
+            </property>
+        </bean>
+
+        <!-- 表示JPA Repository所在的包 -->
+        <jpa:repositories base-package="com.senperchan.novel.core.repository"/>
+        <jpa:repositories base-package="com.senperchan.novel.crawler.repository"/>
+
+
+</beans>
