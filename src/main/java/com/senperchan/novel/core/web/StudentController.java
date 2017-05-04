@@ -41,15 +41,15 @@ public class StudentController {
 
     @RequestMapping(value = URL+"/json", method = RequestMethod.GET,produces="application/json")
     public ResponseEntity<String> showStudents() throws org.json.JSONException {
-        List<Student> blogList = studentService.findAllStudent();
+        List<Student> students = studentService.findAllStudent();
 
         List<JSONObject> entities = new ArrayList<>();
-        for (Student b : blogList) {
+        for (Student s : students) {
 
             JSONObject entity = new JSONObject();
 
-            entity.put("id", b.getId());
-            entity.put("name", b.getName());
+            entity.put("id", s.getId());
+            entity.put("name", s.getName());
             entities.add(entity);
         }
         String text=entities.toString();
