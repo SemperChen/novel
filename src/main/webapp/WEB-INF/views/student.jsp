@@ -29,15 +29,14 @@
 </head>
 <body>
 
-<!-- 如果用户列表非空 -->
 <c:if test="${!empty students}">
     <table class="table table-bordered table-striped">
         <tr>
             <th>ID</th>
-            <th>名字</th>
-            <th>邮箱</th>
-            <th>年级</th>
-            <th>操作</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Grade</th>
+            <th>Function</th>
         </tr>
 
         <c:forEach items="${students}" var="stu">
@@ -56,7 +55,7 @@
 </c:if>
 
 <div class="container">
-    <h1>SpringMVC 添加Student</h1>
+    <h1>Add Student</h1>
     <hr/>
     <form:form action="" method="post" modelAttribute="student" role="form">
         <div class="form-group">
@@ -82,10 +81,10 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-sm btn-success">添加</button>
+            <button type="submit" class="btn btn-sm btn-success">Add</button>
         </div>
     </form:form>
-    <h1>SpringMVC 修改Student</h1>
+    <h1>Edit Student</h1>
     <hr/>
     <c:if test="${!empty students}">
         <c:forEach items="${students}" var="stu">
@@ -96,9 +95,9 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>ID</th>
-                            <th>名字</th>
-                            <th>邮箱</th>
-                            <th>年级</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Grade</th>
 
                         </tr>
 
@@ -113,7 +112,7 @@
                                 <input type="text" class="form-control" id="email1" name="email" value="${stu.email}"/>
                             </td>
                             <td>
-                                <span style="line-height: 2.8rem">${stu.grade.level},修改：</span>
+                                <span style="line-height: 2.8rem">${stu.grade.level},Edit：</span>
 
                                 <select class="form-control" style="float: right;width: 70%" id="grade.id1" name="grade.id">
                                     <c:forEach items="${grades}" var="grade">
@@ -127,7 +126,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-sm btn-success">修改</button>
+                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </div>
             </form:form>
         </c:forEach>

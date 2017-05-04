@@ -11,7 +11,7 @@
  Target Server Version : 50718
  File Encoding         : utf-8
 
- Date: 05/04/2017 10:41:37 AM
+ Date: 05/04/2017 11:31:21 AM
 */
 
 SET NAMES utf8;
@@ -52,7 +52,7 @@ CREATE TABLE `student` (
 --  Records of `student`
 -- ----------------------------
 BEGIN;
-INSERT INTO `student` VALUES ('1', '11@qq.com', 'huang', '1'), ('2', '11@qq.com', '李', '2'), ('3', '11@qq.com', '张', '3');
+INSERT INTO `student` VALUES ('1', '11@qq.com', 'huang', '1'), ('2', '11@qq.com', 'li', '2'), ('3', '11@qq.com', 'zhang', '3');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
