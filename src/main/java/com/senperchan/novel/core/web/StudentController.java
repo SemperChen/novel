@@ -71,6 +71,7 @@ public class StudentController {
     public String post(ModelMap modelMap,@Valid Student student, BindingResult result) {
         if (result.hasErrors()) {
             modelMap.addAttribute("students", studentService.findAllStudent());
+            modelMap.addAttribute("grades", gradeService.getAllGrade());
             return URL;
         }
         studentService.addStudent(student);
