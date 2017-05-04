@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * Created by Semper on 2017/4/27.
  */
 public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
-   /* // 修改
+   /*
+    @Modifying
+    @Transactional
     @Query("UPDATE Student stu SET stu.name=:name WHERE stu.id=:id")
     void updateStudent(@Param("name") String name, @Param("id") Long id);
     @Modifying
+    @Transactional
     @Query("UPDATE Student stu SET stu.name='fu' WHERE stu.id=1")
     void updateStu();
 

@@ -28,10 +28,10 @@ import java.util.List;
 public class StudentController {
     private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
-    final String URL = "/student";
+    private final String URL = "/student";
 
-    private final StudentService studentService;
-    private final GradeService gradeService;
+    private  StudentService studentService;
+    private  GradeService gradeService;
 
     @Autowired
     public StudentController(StudentService studentService,GradeService gradeService) {

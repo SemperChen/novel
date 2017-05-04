@@ -61,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student findByName(String name) {
         Student student=studentRepository.findByName(name);
-        //log.debug("----------------id="+student.getId()+",name="+student.getName());
+        log.debug("----------------id="+student.getId()+",name="+student.getName());
         return student;
     }
 }
