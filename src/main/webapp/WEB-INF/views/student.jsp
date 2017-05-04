@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <label for="grade.id">Author:</label>
+            <label for="grade.id">Grade:</label>
             <select class="form-control" id="grade.id" name="grade.id">
                 <c:forEach items="${grades}" var="grade">
                     <option value="${grade.id}">${grade.id},${grade.level}</option>
