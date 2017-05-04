@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "student")
 public class Student implements Serializable {
     @Id()
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -22,6 +22,10 @@ public class Student implements Serializable {
     @Email
     @NotEmpty
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "grade_id", referencedColumnName = "id", nullable = false)
+    private Grade grade;
 
     public Long getId() {
         return id;
@@ -45,5 +49,13 @@ public class Student implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 }

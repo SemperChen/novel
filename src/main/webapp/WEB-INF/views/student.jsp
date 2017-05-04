@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student Test</title>
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
 
     <style>
         .errors {
@@ -36,6 +36,7 @@
             <th>ID</th>
             <th>名字</th>
             <th>邮箱</th>
+            <th>年级</th>
             <th>操作</th>
         </tr>
 
@@ -44,6 +45,7 @@
                 <td>${stu.id}</td>
                 <td>${stu.name}</td>
                 <td>${stu.email}</td>
+                <td>${stu.grade.level}</td>
 
                 <td>
                     <a href="/delete/${stu.id}" type="button" class="btn btn-sm btn-danger">删除</a>
@@ -71,6 +73,15 @@
         </div>
 
         <div class="form-group">
+            <label for="grade.id">Author:</label>
+            <select class="form-control" id="grade.id" name="grade.id">
+                <c:forEach items="${grades}" var="grade">
+                    <option value="${grade.id}">${grade.id},${grade.level}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success">添加</button>
         </div>
     </form:form>
@@ -87,6 +98,7 @@
                             <th>ID</th>
                             <th>名字</th>
                             <th>邮箱</th>
+                            <th>年级</th>
 
                         </tr>
 
@@ -99,7 +111,15 @@
                             </td>
                             <td>
                                 <input type="text" class="form-control" id="email1" name="email" value="${stu.email}"/>
+                            </td>
+                            <td>
+                                <span style="line-height: 2.8rem">${stu.grade.level},修改：</span>
 
+                                <select class="form-control" style="float: right;width: 70%" id="grade.id1" name="grade.id">
+                                    <c:forEach items="${grades}" var="grade">
+                                        <option value="${grade.id}">${grade.id},${grade.level}</option>
+                                    </c:forEach>
+                                </select>
                             </td>
 
                         </tr>

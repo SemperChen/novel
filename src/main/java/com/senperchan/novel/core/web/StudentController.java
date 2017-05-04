@@ -1,8 +1,12 @@
 package com.senperchan.novel.core.web;
 
+import com.senperchan.novel.core.model.Grade;
 import com.senperchan.novel.core.model.Student;
+import com.senperchan.novel.core.service.GradeService;
 import com.senperchan.novel.core.service.StudentService;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +26,17 @@ import java.util.List;
  */
 @Controller
 public class StudentController {
+    private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
     final String URL = "/student";
 
     private final StudentService studentService;
+    private final GradeService gradeService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService,GradeService gradeService) {
         this.studentService = studentService;
+        this.gradeService=gradeService;
     }
 
     @RequestMapping(value = URL+"/json", method = RequestMethod.GET,produces="application/json")
@@ -52,7 +59,11 @@ public class StudentController {
     @RequestMapping(value = URL,method = RequestMethod.GET)
     public String get(ModelMap modelMap) {
         List<Student> studentList=studentService.findAllStudent();
+        List<Grade> grades=gradeService.getAllGrade();
+
         modelMap.addAttribute("students", studentList);
+        modelMap.addAttribute("grades", grades);
+
         return URL;
     }
 
